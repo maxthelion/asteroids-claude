@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroid Belt Simulation</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="canvas-container">
+        <!-- Main simulation canvas -->
+        <canvas id="main-canvas"></canvas>
+
+        <!-- Mini-map canvas -->
+        <canvas id="minimap-canvas" width="200" height="200"></canvas>
+
+        <!-- Delta-V Control Panel -->
+        <div id="deltav-panel" class="hidden">
+            <h3>Orbital Maneuver</h3>
+
+            <!-- Current orbital info -->
+            <div class="info-section" id="orbital-info">
+                <!-- Populated by JavaScript -->
+            </div>
+
+            <hr class="section-divider">
+
+            <!-- Delta-V magnitude control -->
+            <div class="control-group">
+                <label>
+                    Delta-V Magnitude: <span class="value-display" id="deltav-magnitude-value">0.00</span> km/s
+                </label>
+                <input type="range" id="deltav-magnitude" min="0" max="5" step="0.1" value="0">
+            </div>
+
+            <!-- Direction control -->
+            <div class="control-group">
+                <label>
+                    Direction: <span class="value-display" id="deltav-direction-value">0°</span>
+                </label>
+                <input type="range" id="deltav-direction" min="0" max="360" step="1" value="0">
+
+                <!-- Quick direction buttons -->
+                <div class="direction-buttons">
+                    <button id="btn-prograde">Prograde</button>
+                    <button id="btn-retrograde">Retrograde</button>
+                    <button id="btn-radial-in">Radial In</button>
+                    <button id="btn-radial-out">Radial Out</button>
+                </div>
+            </div>
+
+            <hr class="section-divider">
+
+            <!-- Projected orbital info -->
+            <div class="info-section" id="projected-info">
+                <!-- Populated by JavaScript when delta-v > 0 -->
+            </div>
+
+            <!-- Apply button -->
+            <button id="deltav-apply" disabled>Apply Maneuver</button>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
