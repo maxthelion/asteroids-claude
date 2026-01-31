@@ -33,6 +33,60 @@ body {
     cursor: grabbing;
 }
 
+/* Time Control Panel */
+#time-panel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(20, 25, 40, 0.9);
+    border: 1px solid rgba(100, 150, 255, 0.3);
+    border-radius: 8px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#time-panel label {
+    color: #aabbcc;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+#time-panel #time-scale-value {
+    color: #ffffff;
+    font-family: monospace;
+    min-width: 40px;
+    display: inline-block;
+}
+
+#time-panel input[type="range"] {
+    width: 120px;
+    height: 6px;
+    background: rgba(100, 150, 255, 0.2);
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+#time-panel input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #44aaff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#time-panel input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: #44aaff;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
 /* Minimap */
 #minimap-canvas {
     position: absolute;

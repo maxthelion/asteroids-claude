@@ -37,6 +37,12 @@ class Simulation {
         this.time = 0;
         this.lastFrameTime = 0;
         this.fps = 60;
+        this.timeScale = TIME_SCALE; // Adjustable time scale
+
+        // Time scale slider
+        this.timeScaleSlider = document.getElementById('time-scale');
+        this.timeScaleValue = document.getElementById('time-scale-value');
+        this.setupTimeScaleSlider();
 
         // Set up event handlers
         this.setupEventListeners();
@@ -117,6 +123,36 @@ class Simulation {
     }
 
     /**
+     * Set up time scale slider
+     */
+    setupTimeScaleSlider() {
+        // Slider value 0-100 maps to time scale with exponential curve
+        // 0 = paused, 10 = 1x, 50 = 10x, 100 = 100x
+        const updateTimeScale = () => {
+            const val = parseFloat(this.timeScaleSlider.value);
+            if (val === 0) {
+                this.timeScale = 0;
+                this.timeScaleValue.textContent = 'Paused';
+            } else {
+                // Exponential mapping: 10^((val-10)/45) gives ~1x at val=10, ~100x at val=100
+                const multiplier = Math.pow(10, (val - 10) / 45);
+                this.timeScale = TIME_SCALE * multiplier;
+
+                if (multiplier < 0.1) {
+                    this.timeScaleValue.textContent = multiplier.toFixed(2) + 'x';
+                } else if (multiplier < 10) {
+                    this.timeScaleValue.textContent = multiplier.toFixed(1) + 'x';
+                } else {
+                    this.timeScaleValue.textContent = Math.round(multiplier) + 'x';
+                }
+            }
+        };
+
+        this.timeScaleSlider.addEventListener('input', updateTimeScale);
+        updateTimeScale(); // Set initial value
+    }
+
+    /**
      * Apply an orbit change to an asteroid
      */
     applyOrbitChange(asteroid, newOrbit) {
@@ -144,7 +180,7 @@ class Simulation {
 
         // Update simulation time
         if (!this.paused) {
-            this.time += deltaTime * TIME_SCALE;
+            this.time += deltaTime * this.timeScale;
         }
 
         // Update

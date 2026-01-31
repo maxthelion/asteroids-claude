@@ -14,6 +14,14 @@
         <!-- Mini-map canvas -->
         <canvas id="minimap-canvas" width="200" height="200"></canvas>
 
+        <!-- Time Control Panel -->
+        <div id="time-panel">
+            <label>
+                Speed: <span id="time-scale-value">1x</span>
+            </label>
+            <input type="range" id="time-scale" min="0" max="100" step="1" value="10">
+        </div>
+
         <!-- Delta-V Control Panel -->
         <div id="deltav-panel" class="hidden">
             <h3>Orbital Maneuver</h3>
